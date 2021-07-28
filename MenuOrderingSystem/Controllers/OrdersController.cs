@@ -18,9 +18,15 @@ namespace MenuOrderingSystem.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<OrderResponse>> Create(OrderRequest request)
+        public async Task<IActionResult> Create(OrderRequest request)
         {
-            return await _orderService.CreateOrder(request);
+            var order = await _orderService.CreateOrder(request);
+            if (!order.IsValid)
+            {
+                return BadRequest(order.Display);
+            }
+
+            return Ok(order.Display);
         }
     }
 }

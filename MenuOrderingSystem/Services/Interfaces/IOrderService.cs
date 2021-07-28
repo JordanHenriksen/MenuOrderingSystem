@@ -5,6 +5,6 @@ namespace MenuOrderingSystem.Services.Interfaces
 {
     public interface IOrderService
     {
-        Task<OrderResponse> CreateOrder(OrderRequest request);
+        Task<Order> CreateOrder(OrderRequest request);
     }
 }
